@@ -10,5 +10,6 @@ import java.util.List;
 public interface ModelRepositoryCustom {
     List<ModelResponseDto> findModelsWithLuxury(ModelRequestDto modelRequestDto);
     ModelResponseDto saveModelsWithLuxury(ModelRequestDto modelRequestDto);
+    ModelResponseDto updateModelsWithLuxury(ModelRequestDto modelRequestDto);
 
 }

@@ -48,7 +48,7 @@ class ModelControllerTest {
     @DisplayName("Model 작성")
     public void saveModelTest() throws Exception {
         // given
-        ModelRequestDto modelReq = new ModelRequestDto(null,"tdd", Gender.M,null,null);
+        ModelRequestDto modelReq = new ModelRequestDto(null,"tdd", Gender.M,null,null,null,null);
 
         // when, then
         mockMvc.perform(
@@ -62,30 +62,36 @@ class ModelControllerTest {
     }
 
     @Test
-    @DisplayName("전체 Model 조회")
-    public void allModelTest() throws Exception {
+    @DisplayName("Model 조회")
+    public void findModelTest() throws Exception {
         // given
+        ModelRequestDto modelReq = new ModelRequestDto(null,"tdd", Gender.M,null,null,null,null);
 
         // when, then
         mockMvc.perform(
-                get("/api/test"))
-                .andExpect(status().isOk());
+                post("/api/test")
+                .contentType(MediaType.APPLICATION_JSON) // 요청 본문 타입 설정
+                .content(objectMapper.writeValueAsString(modelReq)) // 요청 본문에 JSON 데이터 추가
+        ).andExpect(status().isOk());
 
-        verify(modelService).getModelList();
+        verify(modelService).findModelsWithLuxury(modelReq);
     }
 
     @Test
-    @DisplayName("Model 삭제")
-    public void deleteModelTest() throws Exception{
-        //given
-        Long id = 1L;
+    @DisplayName("Model 수정")
+    public void updateModelTest() throws Exception{
+        // given
+        ModelRequestDto modelReq = new ModelRequestDto(null,"tdd", Gender.M,null,null,null,null);
 
-        //when,then
+        // when, then
         mockMvc.perform(
-                delete("/api/delete/{id}",id))
-                .andExpect(status().isOk());
+                post("/api/update")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(modelReq)))
+                .andExpect(status().isCreated());
 
-        verify(modelService).deleteModel(id);
+
+        verify(modelService).updateModel(modelReq);
     }
 
 

@@ -30,7 +30,7 @@ public class ModelService {
     }
 
     @Transactional
-    public void deleteModel(Long id) {
-
+    public ModelResponseDto updateModel(ModelRequestDto modelRequestDto) {
+        return modelRepository.updateModelsWithLuxury(modelRequestDto);
     }
 }

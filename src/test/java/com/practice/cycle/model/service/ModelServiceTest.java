@@ -38,56 +38,59 @@ class ModelServiceTest {
     ModelMapper modelMapper;
 
     @Test
-    @DisplayName("전체 Model 조회 서비스")
-    void findAllModel(){
+    @DisplayName("Model 조회 서비스")
+    void findModelTest(){
         //given
-        List<Model> models = new ArrayList<>();
-        Model model1 = new Model(5L,"decive", Gender.M,null,null);
-        Model model2 = new Model(6L,"helena", Gender.F,null,null);
-        models.add(model1);
+        ModelRequestDto model1 = new ModelRequestDto(1L,"decive", Gender.M,null,null,null,null);
+        ModelResponseDto model2 = new ModelResponseDto(1L,"decive", Gender.M,null,null,null);
+
+        List<ModelResponseDto> models = new ArrayList<>();
         models.add(model2);
 
-        given(modelRepository.findAll()).willReturn(models);
+        //given
+        given(modelRepository.findModelsWithLuxury(model1)).willReturn(models);
 
 
         //when
-        List<ModelResponseDto> result = modelService.getModelList();
+        List<ModelResponseDto> result = modelService.findModelsWithLuxury(model1);
 
         //then
-        assertThat(result.size()).isEqualTo(2);
+        assertThat(result.size()).isEqualTo(1);
         assertThat(result.get(0).getName()).isEqualTo("decive");
-        assertThat(result.get(1).getName()).isEqualTo("helena");
+
     }
 
     @Test
     @DisplayName("Model 추가")
-    void addModelTest(){
+    void saveModelTest(){
         // given
-        Model model = new Model(1L,"Isaac", Gender.M,null,null);
-        ModelRequestDto modelRequestDTO = new ModelRequestDto(1L,"Isaac", Gender.M,null,null);
+        ModelRequestDto model1 = new ModelRequestDto(1L,"Isaac", Gender.M,null,null,null,null);
+        ModelResponseDto model2 = new ModelResponseDto(1L,"Isaac", Gender.M,null,null,null);
 
-        given(modelRepository.save(model)).willReturn(model);
+        given(modelRepository.saveModelsWithLuxury(model1)).willReturn(model2);
 
         //when
-        modelService.saveModel(modelRequestDTO);
+        modelService.saveModel(model1);
 
         //then
-        verify(modelRepository).save(any());
+        verify(modelRepository).saveModelsWithLuxury(any());
 
     }
 
     @Test
-    @DisplayName("model 삭제")
+    @DisplayName("model 수정")
     void deleteModelTest(){
         // given
-        Model model = new Model(1L,"Isaac", Gender.M,null,null);
-        given(modelRepository.findById(anyLong())).willReturn(Optional.of(model));
+        ModelRequestDto model1 = new ModelRequestDto(1L,"re", Gender.M,null,null,null,null);
+        ModelResponseDto model2 = new ModelResponseDto(1L,"re", Gender.M,null,null,null);
+
+        given(modelRepository.updateModelsWithLuxury(model1)).willReturn(model2);
 
         // when
-        modelService.deleteModel(1L);
+        modelService.updateModel(model1);
 
         // then
-        verify(modelRepository).deleteById(anyLong());
+        verify(modelRepository).updateModelsWithLuxury(any());
 
     }
 

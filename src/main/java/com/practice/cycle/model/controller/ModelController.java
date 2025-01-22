@@ -21,14 +21,13 @@ public class ModelController {
     }
 
     @PostMapping("/api/add")
-    public ResponseEntity<?> saveModel(@RequestBody ModelRequestDto modelRequestDto){
+    public ResponseEntity<?> insertModel(@RequestBody ModelRequestDto modelRequestDto){
         return ResponseEntity.status(HttpStatus.CREATED).body(modelService.saveModel(modelRequestDto));
     }
 
-    @DeleteMapping("/api/delete/{id}")
-    public ResponseEntity deleteModel(@PathVariable("id") Long id){
-        modelService.deleteModel(id);
-        return ResponseEntity.ok("Success");
+    @PostMapping("/api/update")
+    public ResponseEntity updateModel(@RequestBody ModelRequestDto modelRequestDto){
+        return ResponseEntity.ok(modelService.updateModel(modelRequestDto));
     }
 
 
