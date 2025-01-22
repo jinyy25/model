@@ -41,14 +41,15 @@ public class ModelRepositoryCustomImpl implements ModelRepositoryCustom {
 
         return  queryFactory.select(
                 new QModelResponseDto(
-                        model.name
+                        model.id
+                        , model.name
                         , model.gender
                         , Expressions.stringTemplate("GROUP_CONCAT({0})", luxury.name).as("luxuries")))
                 .from(model)
                 .innerJoin(model.modelLuxuries, modelLuxury) // 모델과 모델-럭셔리 중간 테이블 조인
                 .innerJoin(luxury).on(modelLuxury.luxury.eq(luxury)) // 모델-럭셔리와 럭셔리 테이블을 조인
                 .where(builder)
-                .groupBy(model.name, model.gender)
+                .groupBy(model.id, model.name, model.gender)
                 .fetch();
     }
 
@@ -83,6 +84,7 @@ public class ModelRepositoryCustomImpl implements ModelRepositoryCustom {
 
         return queryFactory.select(
                 new QModelResponseDto(
+                        model.id,
                         model.name,
                         model.gender,
                         Expressions.stringTemplate("GROUP_CONCAT({0})", luxury.name).as("luxuries")
@@ -92,7 +94,7 @@ public class ModelRepositoryCustomImpl implements ModelRepositoryCustom {
                 .innerJoin(model.modelLuxuries, modelLuxury)
                 .innerJoin(luxury).on(modelLuxury.luxury.eq(luxury))
                 .where(model.id.eq(modelId))
-                .groupBy(model.name, model.gender)
+                .groupBy(model.id, model.name, model.gender)
                 .fetchOne();
     }
 

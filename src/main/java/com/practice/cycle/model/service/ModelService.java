@@ -26,28 +26,11 @@ public class ModelService {
 
     @Transactional
     public ModelResponseDto saveModel(ModelRequestDto modelRequestDto){
-
-        // Model 엔티티 저장
-//        Model model = modelRequestDto.toModelEntity(modelRequestDto);
-//        modelRepository.save(model);
-//
-//        // ModelLuxury 엔티티 저장
-//        List<ModelLuxury> modelLuxuries = modelRequestDto.toModelLuxuryEntities(modelRequestDto.getLuxuries(), model);
-//        modelLuxuryRepository.saveAll(modelLuxuries);
-//
-//        return ModelResponseDto.toModelDto(model);
         return modelRepository.saveModelsWithLuxury(modelRequestDto);
     }
 
     @Transactional
     public void deleteModel(Long id) {
 
-        // Model 엔티티 찾기
-//        Model model = modelRepository.findById(id).orElseThrow(ModelNotfoundException::new);
-//
-//        // Model 엔티티 삭제 (CascadeType.ALL 덕분에 관련된 ModelLuxury 삭제됨)
-//        modelRepository.delete(model);
-
-        // 만료일 경우 중단
     }
 }

@@ -29,7 +29,8 @@ public class ModelResponseDto {
     private List<String> luxuries;  // luxuries 리스트 추가
 
     @QueryProjection
-    public ModelResponseDto( String name, Gender gender, String luxuries){
+    public ModelResponseDto(Long id, String name, Gender gender, String luxuries){
+        this.id = id;
         this.name = name;
         this.gender = gender;
         this.luxuries = Arrays.asList(luxuries.split(","));

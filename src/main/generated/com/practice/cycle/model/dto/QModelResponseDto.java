@@ -13,8 +13,8 @@ public class QModelResponseDto extends ConstructorExpression<ModelResponseDto> {
 
     private static final long serialVersionUID = 1884205335L;
 
-    public QModelResponseDto(com.querydsl.core.types.Expression<String> name, com.querydsl.core.types.Expression<com.practice.cycle.model.entity.Gender> gender, com.querydsl.core.types.Expression<String> luxuries) {
-        super(ModelResponseDto.class, new Class<?>[]{String.class, com.practice.cycle.model.entity.Gender.class, String.class}, name, gender, luxuries);
+    public QModelResponseDto(com.querydsl.core.types.Expression<Long> id, com.querydsl.core.types.Expression<String> name, com.querydsl.core.types.Expression<com.practice.cycle.model.entity.Gender> gender, com.querydsl.core.types.Expression<String> luxuries) {
+        super(ModelResponseDto.class, new Class<?>[]{long.class, String.class, com.practice.cycle.model.entity.Gender.class, String.class}, id, name, gender, luxuries);
     }
 
 }
