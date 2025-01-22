@@ -38,7 +38,7 @@ class ModelServiceTest {
     ModelMapper modelMapper;
 
     @Test
-    @DisplayName("Model 조회 서비스")
+    @DisplayName("Model 조회")
     void findModelTest(){
         //given
         ModelRequestDto model1 = new ModelRequestDto(1L,"decive", Gender.M,null,null,null,null);
