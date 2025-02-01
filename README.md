@@ -1,7 +1,7 @@
 # JPA
 
 - Spring MVC 
-- JPA, QueryDSL (M:N)
+- JPA, QueryDSL (M:N, CRUD)
 - Mysql
 - Junit
 - Gradle
