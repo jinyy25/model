@@ -1,10 +1,13 @@
-package com.practice.cycle.redis;
+package com.practice.cycle.redis.service;
 
+import com.practice.cycle.redis.entity.Member;
+import com.practice.cycle.redis.repository.RedisRepository;
+import com.practice.cycle.redis.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RedisServiceImpl implements RedisService{
+public class RedisServiceImpl implements RedisService {
 
 
     private final RedisRepository redisRepository;

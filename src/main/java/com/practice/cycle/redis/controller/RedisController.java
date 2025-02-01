@@ -1,4 +1,4 @@
-package com.practice.cycle.redis;
+package com.practice.cycle.redis.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

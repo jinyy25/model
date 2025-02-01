@@ -1,11 +1,15 @@
-package com.practice.cycle.redis;
+package com.practice.cycle.redis.entity;
 
 import jakarta.persistence.Id;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.data.redis.core.RedisHash;
 
+@Getter
+@NoArgsConstructor
 @Data
-@RedisHash("member")
+@RedisHash(value = "member", timeToLive = 20)
 public class Member {
 
     @Id
