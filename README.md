@@ -4,3 +4,4 @@
 - JPA, QueryDSL 
 - Junit
 - Gradle
+- Redis
